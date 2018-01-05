@@ -14,6 +14,6 @@ Auto Viação Salineira
 </tr>
 </table>
 </br>
-[Google Store](https://play.google.com/store/apps/details?id=br.com.salineira.wazebus)
+https://play.google.com/store/apps/details?id=br.com.salineira.wazebus
 
 
