@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="app_framework/3.0/af.ui.css" data-ver="2">
+    <link rel="stylesheet" type="text/css" href="app_framework/3.0/icons.min.css">
+    <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
+    <link rel="stylesheet" type="text/css" href="css/mycss.css">
+    <link rel="stylesheet" type="text/css" href="ionic/css/ionic.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src 'self' 'unsafe-inline' *">
+    <script src="intelxdk.js"></script>
+    <script src="cordova.js"></script>
+    <script src="xhr.js"></script>
+    <script src="xdk/init-dev.js"></script>
+    <script>
+        document.addEventListener("intel.xdk.device.hardware.back", function () {            
+            BotaoVoltar();            
+        }, false);
+    </script>
+    <!--
+      You may substitute jQuery for the App Framework selector library.
+      See http://app-framework-software.intel.com/documentation.php#afui/afui_jquery
+    -->
+    <!--<script type="application/javascript" src="js/CircularLoader.js"></script>-->
+    <script type="application/javascript" src="lib/jquery.min.js"></script>
+    <script type="application/javascript" src="app_framework/3.0/appframework.ui.min.js"></script>
+    <script type="application/javascript">
+        $.afui.autoLaunch = false; //By default, it is set to true and you're app will run right away.  We set it to false to show a splashscreen
+        /* This function runs when the content is loaded.*/
+        $.afui.useOSThemes = false;
+        $(document).ready(function () {
+            setTimeout(function () {
+                $.afui.launch();
+            }, 1500);
+        });
+    </script>
+    <script src="js/maps.js"></script>
+    <script type="application/javascript" src="js/app.js"></script>
+    <script type="application/javascript" src="js/init-app.js"></script>
+    <script type="application/javascript" src="js/index_init_services.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJPhPokQKLLxesa0dKy3277vSPDccIIuo" async defer></script>
+</head>
+
+<body id="afui" class="v2 android light">
+    <div class="upage vertical-col left view" id="pageLocalizacao" data-header="af-header-0" data-footer="af-footer-0">
+        <header class="container-group outer-element uib_w_3" data-uib="app_framework/header" data-ver="3" id="af-header-0" style="height:65px; background-image: url('images/barra.png');">
+            <div class="widget-container left-receptacle" style="padding-top: 21px; margin-left:4%; width:5%; margin-right:20%;"><img src="images/SetaVoltar.png" width="19px" id="imgSetaVoltar" onclick="MapaInicio();"></div>
+            <div class="widget-container left-receptacle" style="padding-top: 13px; width:50%;"><img src="images/Wazebus-Logo-Barra.png" width="125px" id="imgLogo"></div>
+            <div class="widget-container right-receptacle" style="padding-top: 15px; margin-right:3%;">
+                <img src="images/botaoDesligar.png" width="37px" id="imgOff" onclick="FecharAPP()">
+            </div>
+        </header>
+        <div id="divLocContainer" class="text-container" style="height:115px;">
+            <div style="margin-left:37px; margin-top:9px;">
+                <div class="widget-container left-receptacle">
+                    <div id="divLoc1" style="text-align:left; color:#727376; font-size:18px; width:260px; font-weight: bold; margin-left:3%; background-color: #edeff2; height:40px;">
+                        <div id="divLabelPosicaoAtual" style="padding-top:7px; padding-left: 15px;">Posição Atual</div>
+                    </div>
+                </div>
+            </div>
+            <div style="position: absolute; z-index: 9999; padding-top:9px; padding-left:17px;"><img src="images/circle-black.png" width="9px"></div>
+            <div id="linhaVertical" style="width:1px; height:39px; background-color: black; position: absolute; z-index: 9999; margin-top:27px; margin-left:21px;"></div>
+            <div style="position: absolute; z-index: 9999; margin-top:67px; margin-left:17px;"><img src="images/quadrado-gray.png" width="9px"></div>
+            <div style="color:black; font-size:16px; heigth:40px;">
+                <div class="widget-container left-receptacle">
+                    <div style="margin-left: 45px; margin-top: -9px;">
+                        <div class="table-thing with-label widget uib_w_2 d-margins textoBusca" data-uib="app_framework/input" data-ver="2">
+                            <div id="divLoc2" style="background-color: #edeff2; height:40px; width:260px;">
+                                <div style="padding-top:5px; padding-left: 15px;">
+                                    <input class="wide-control" placeholder="Para onde?" type="text" height="35px" id="txtBuscarEndereco" style="width:225px; font-size:16px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="width:100%; background-color:lightgray; height:9px;"></div>
+        <div class="pages">
+            <div class="upage-outer">
+                <div id="uib_pageLocalizacao" class="upage-content  panel vertical-col" style="height:100%;">
+                    <div id="divProgressEndereco" style="width:100%; margin-top:50px; text-align:center; vertical-align:middle; color:black;">
+                        Aguarde. Carregando dados...
+                        <div id="divLoader" style="text-align:center; vertical-align:middle; margin-top:45px;">
+                            <img src="images/preloaded.gif" width="77px" id="imgLogo">
+                        </div>
+                    </div>
+                    <div id="divMapaTela2"></div>
+                    <div style="padding-left:37px;" id="divListaEndereco">
+                        <!--<ul class="list widget uib_w_5 d-margins" data-uib="app_framework/listview" data-ver="2" id="listaOrigem" onclick="clickListaOrigem();"></ul>-->
+                        <ul class="list widget uib_w_5 d-margins" data-uib="app_framework/listview" data-ver="2" id="listaEndereco"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="upage vertical-col left view" id="pageTipoOnibus" data-header="af-header-0" data-footer="af-footer-0">
+        <header class="container-group outer-element uib_w_3" data-uib="app_framework/header" data-ver="3" id="af-header-0" style="height:65px; background-image: url('images/barra.png');">
+            <div class="widget-container left-receptacle" style="padding-top: 21px; margin-left:4%; width:5%; margin-right:20%;"><img src="images/SetaVoltar.png" width="19px" id="imgSetaVoltar" onclick="AbrirParaOnde();"></div>
+            <div class="widget-container left-receptacle" style="padding-top: 13px; width:50%;"><img src="images/Wazebus-Logo-Barra.png" width="125px" id="imgLogo"></div>
+            <div class="widget-container right-receptacle" style="padding-top: 15px; margin-right:3%;">
+                <img src="images/botaoDesligar.png" width="37px" id="imgOff" onclick="FecharAPP()">
+            </div>
+        </header>
+        <div class="text-container" id="divDestinos">
+            <div id="divLabelDestino" style="color:red; font-size:16px; margin-left:22px; padding-top: 9px; Height: 37px;">
+                <label id="lblDestinoSelecionado" style="font-size:16px; width:275px; text-align:left;"></label>
+            </div>
+            <div id="divLabelEndereco" style="color:black; font-size:16px; margin-left:22px; padding-top: 5px; Height: 37px;">
+                <label id="lblPontoDestinoSelecionado" style="font-size:16px; width:330px; text-align:left;"></label>
+            </div>
+        </div>
+        <div style="width:100%; background-color:lightgray; height:9px;"></div>
+        <div class="pages">
+            <div id="div1" style="text-align:left;font-size:20px; padding-top:25px; height:255px;">
+                <div id="div2">
+                    <div style="margin-left:21px;"><img src="images/iconeTipoOnibus.png" width="35px"></div>
+                    <div style="font-size:18px; margin-left:75px; margin-top:-35px;">
+                        Escolha o tipo do onibus:
+                    </div>
+                    <div style="font-size:14px; margin-left:77px; margin-top:5px;">
+                        (Toda frota possui acessibilidade)
+                    </div>
+                </div>
+                <div id="div3" style="margin-top:35px;">
+                    <table style="width:100%;">
+                        <tr>
+                            <td style="width:50%; text-align:center;">
+                                <!--<img src="images/arCinza.png" width="125px" id="imgAr" onclick="checkAr()">-->
+                                <div>
+                                    <button id="btnAr" type="button" style="background-color:#bfbfbf; background-image: url('images/arCinza-125.png'); width:125px; height:125px; text-align:center; color:white; font-size:37px; border-radius:9px;" onclick="checkAr()"></button>
+                                </div>
+                            </td>
+                            <td style="width:50%; text-align:center;">
+                                <!--<img src="images/TodosCinza.png" width="125px" id="imgTodos" onclick="checkTodos()">-->
+                                <div style="margin-left: 5%; position: absolute;">
+                                    <button id="btnTodos" type="button" style="background-color:#bfbfbf; width:125px; height:125px; text-align:center; color:white; font-size:37px; border-radius:9px;" onclick="checkTodos()">Todos</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div id="divBtnHorarios" style="width:100%; text-align:center; margin-top:23px;">
+                <!--<button id="btnHorarios" type="button" style="background-color:#4bd763; width:215px; height:45px; color:white; font-size:16px; text-align:center; border-radius:9px;" onclick="listarHorarios()">Listar horários</button>-->
+                <button id="btnHorarios" type="button" style="background-image: url('images/imgBotao0.jpg'); width:215px; height:45px; color:white; font-size:16px; text-align:center;" onclick="listarHorarios()" onmouseover="BotaoHistoricoVerdeEscuro()" onmouseout="BotaoHistoricoVerdeClaro()">Listar horários</button>
+            </div>
+        </div>
+    </div>
+    <div class="upage vertical-col left view" id="pageHorarios" data-header="af-header-0" data-footer="af-footer-0">
+        <header class="container-group outer-element uib_w_3" data-uib="app_framework/header" data-ver="3" id="af-header-0" style="height:65px; background-image: url('images/barra.png');">
+            <div class="widget-container left-receptacle" style="padding-top: 21px; margin-left:4%; width:5%; margin-right:20%;"><img src="images/SetaVoltar.png" width="19px" id="imgSetaVoltar" onclick="AbrirParaOnde();"></div>
+            <div class="widget-container left-receptacle" style="padding-top: 13px; width:50%;"><img src="images/Wazebus-Logo-Barra.png" width="125px" id="imgLogo"></div>
+            <div class="widget-container right-receptacle" style="padding-top: 15px; margin-right:3%;">
+                <img src="images/botaoDesligar.png" width="37px" id="imgOff" onclick="FecharAPP()">
+            </div>
+        </header>
+        <div class="text-container" id="divHorarioDestinos">
+            <div id="divHorarioLabelDestino" style="color:red; font-size:16px; margin-left:22px; padding-top: 9px; Height: 37px;">
+                <label id="lblHorarioDestinoSelecionado" style="font-size:16px; width:275px; text-align:left;"></label>
+            </div>
+            <div id="divHorarioLabelEndereco" style="color:black; font-size:16px; margin-left:22px; padding-top: 5px; Height: 37px;">
+                <label id="lblHorarioPontoDestinoSelecionado" style="font-size:16px; width:330px; text-align:left;"></label>
+            </div>
+        </div>
+        <div style="width:100%; background-color:lightgray; height:9px;"></div>
+        <div class="pages" style="width:100%;">
+            <div class="upage-content vertical-col left panel ac0" id="uib_pageHorarios">
+                <div style="padding-top:19px; width:100%;" id="divExibirRota">
+                    <div style="margin-left:21px;"><img src="images/iconeDistancia.png" width="35px"></div>
+                    <div style="font-size:16px; margin-left:75px; margin-top:-29px;">
+                        Selecione o ponto para exibir a rota
+                    </div>
+                </div>
+                <div style="width:100%; margin-top:25px; background-color:#00afef; height:1px; horizontal-align:middle;"></div>
+                <div id="divProgressHorarios" style="width:100%; padding-top:45px; text-align:center; vertical-align:middle; color:black;">
+                    Aguarde. Carregando dados...
+                    <div id="divLoader" style="text-align:center; vertical-align:middle; margin-top:45px;">
+                        <img src="images/preloaded.gif" width="77px" id="imgLogo">
+                    </div>
+                </div>
+                <div style="padding-left:19px; margin-top:-15px; " id="divListaHorarios">
+                    <ul class="list widget uib_w_5 d-margins" data-uib="app_framework/listview" data-ver="2" id="listaHorarios"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="upage vertical-col left view" id="pageMapa" data-header="none" data-footer="none">
+        <header class="container-group outer-element uib_w_3" data-uib="app_framework/header" data-ver="3" id="af-header-0" style="height:65px; background-image: url('images/barra.png');">
+            <div class="widget-container left-receptacle" style="padding-left: 15px; padding-top: 21px"><img src="images/SetaVoltar.png" width="19px" id="imgSetaVoltar" onclick="MontaRota()"></div>
+            <div class="widget-container left-receptacle" style="padding-left: 85px; padding-top: 15px"><img src="images/Wazebus-Logo-Barra.png" width="125px" id="imgLogo"></div>
+            <div class="widget-container right-receptacle" style="padding-right: 15px; padding-top: 15px">
+                <img src="images/botaoDesligar.png" width="37px" id="imgOff" onclick="FecharAPP()">
+            </div>
+        </header>
+        <div style="width:100%; background-color:lightgray; height:9px;"></div>
+        <div class="pages">
+            <div id="divMapa" style="width:100%; height:100%">
+            </div>
+        </div>
+    </div>
+    <div class="upage vertical-col left view" id="pageRota" data-header="af-header-0" data-footer="af-footer-0">
+        <header class="container-group outer-element uib_w_3" data-uib="app_framework/header" data-ver="3" id="af-header-0" style="height:65px; background-image: url('images/barra.png');">
+            <div class="widget-container left-receptacle" style="padding-top: 21px; margin-left:4%; width:5%; margin-right:20%;"><img src="images/SetaVoltar.png" width="19px" id="imgSetaVoltar" onclick="listarHorarios();"></div>
+            <div class="widget-container left-receptacle" style="padding-top: 13px; width:50%;"><img src="images/Wazebus-Logo-Barra.png" width="125px" id="imgLogo"></div>
+            <div class="widget-container right-receptacle" style="padding-top: 15px; margin-right:3%;">
+                <img src="images/botaoDesligar.png" width="37px" id="imgOff" onclick="FecharAPP()">
+            </div>
+        </header>
+        <div class="pages">
+            <div style="width:100%; background-color:lightgray; height:9px;"></div>
+            <div class="upage-content vertical-col left panel ac0" id="uib_pageRota">
+                <div style="height:150px;">
+                    <div id="labelMapaPonto" style="padding-top:19px; text-align:center; color: darkorange; height:17px;">
+                        Exibir mapa até o ponto próximo
+                    </div>
+                    <div style="text-align:left;font-size:20px; padding-top:35px; height:50px;">
+                        <div style="margin-left:17px;"><img src="images/pessoaAndando.png" width="30px"></div>
+                        <div style="font-size:18px; margin-left:73px; margin-top:-30px;">
+                            Como chegar
+                        </div>
+                    </div>
+                    <div id="divProgressRota" style="width:100%; padding-top:105px; text-align:center; vertical-align:middle; color:black; position: absolute; z-index: 9999;">
+                        Aguarde. Carregando dados...
+                        <div id="divLoader" style="text-align:center; vertical-align:middle; margin-top:45px;">
+                            <img src="images/preloaded.gif" width="77px" id="imgLogo">
+                        </div>
+                    </div>
+                    <div style="padding-left:25px; color: black; font-size:12px;" id="divListaRota">
+                        <ul class="list widget uib_w_5 d-margins" data-uib="app_framework/listview" data-ver="2" id="listaRota"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="upage vertical-col left view" id="pageMapaInicio" data-header="none" data-footer="none">
+        <header class="container-group outer-element uib_w_3" data-uib="app_framework/header" data-ver="3" id="af-header-0" style="height:65px; background-image: url('images/barra.png');" id="headerMapaInicio">
+            <div class="widget-container left-receptacle" style="padding-top: 21px;"></div>
+            <div class="widget-container left-receptacle" style="padding-top: 13px; margin-left:29%; width:50%;"><img src="images/Wazebus-Logo-Barra.png" width="125px" id="imgLogo"></div>
+            <div class="widget-container right-receptacle" style="padding-top: 15px; margin-right:3%;">
+                <img src="images/botaoDesligar.png" width="37px" id="imgOff" onclick="FecharAPP()">
+            </div>
+        </header>
+        <div style="width:100%; background-color:lightgray; height:9px;" id="linhaMapaInicio"></div>
+        <div class="pages">
+            <div id="divProgressMapaInicio" style="width:100%; padding-top:150px; text-align:center; vertical-align:middle; color:black; position: absolute; z-index: 9999;">
+                Aguarde. Carregando dados...
+                <div id="divLoader" style="text-align:center; vertical-align:middle; margin-top:45px;">
+                    <img src="images/preloaded.gif" width="77px" id="imgLogo">
+                </div>
+            </div>
+            <div id="divParaOnde" style="background-color:white; color: #727376; width:80%; height:50px; margin-top:35px; position: absolute; z-index: 9999; border-radius:3px; margin-left:10%; margin-right:10%; box-shadow: 7px 7px 5px #cccccc;">
+                <div id="divLabelParaOnde" style="margin-left: 19px; margin-top: 13px; font-size:20px;" onclick="AbrirParaOnde();">
+                    <div style="color:#00acb3">&#8226;</div>
+                    <div style="margin-left:17px; margin-top:-25px;">Para onde?</div>
+                </div>
+            </div>
+            <div id="divAlerta" style="color: red; text-align:center; vertical-align:middle; position: absolute; z-index: 9999; width: 100%; font-weight: bold;">
+            </div>
+            <div id="divMapaInicio">
+            </div>
+        </div>
+    </div>
+    <div class="upage vertical-col left view" id="pageMapaTrajeto" data-header="none" data-footer="none">
+        <header class="container-group outer-element uib_w_3" data-uib="app_framework/header" data-ver="3" id="af-header-0" style="height:65px; background-image: url('images/barra.png');">
+            <div class="widget-container left-receptacle" style="padding-top: 21px; margin-left:4%; width:5%; margin-right:20%; z-index: 9999;" onclick="VoltarTrajeto();"><img src="images/SetaVoltar.png" width="19px" id="imgSetaVoltarTrajeto" onclick="VoltarTrajeto();">
+                <label id="lbl1"></label>
+            </div>
+            <div class="widget-container left-receptacle" style="padding-top: 13px; width:50%;">
+                <img src="images/Wazebus-Logo-Barra.png" width="125px" id="imgLogo">
+            </div>
+            <div class="widget-container right-receptacle" style="padding-top: 15px; margin-right:3%;">
+                <img src="images/botaoDesligar.png" width="37px" id="imgOff" onclick="FecharAPP()">
+            </div>
+        </header>
+        <div style="width:100%; background-color:lightgray; height:9px;" id="linhaMapaTrajeto"></div>
+        <div class="pages">
+            <div id="divProgressMapaTrajeto" style="width:100%; padding-top:150px; text-align:center; vertical-align:middle; color:black; position: absolute; z-index: 9999;">
+                Aguarde. Carregando dados...
+                <div id="divLoader" style="text-align:center; vertical-align:middle; margin-top:45px;">
+                    <img src="images/preloaded.gif" width="77px" id="imgLogo">
+                </div>
+            </div>
+            <div id="divAlertaMapaTrajeto" style="color: red; text-align:center; vertical-align:middle; position: absolute; z-index: 9999; width: 100%; font-weight: bold;">
+            </div>
+            <div id="divParaOnde" style="background-color:white; color: #727376; width:67%; height:59px; margin-top:19px; position: absolute; z-index: 9999; border-radius:3px; margin-left:10%; margin-right:10%; box-shadow: 7px 7px 5px #919191;">
+                <div id="divLabelParaOnde" style="margin-left: 15px; margin-top: 13px; font-size:14px;">
+                    <div style="background-color:#CC0000; width:9px; height:3px;"></div>
+                    <div style="margin-left:17px; margin-top:-10px;">Até o Ponto de Embarque</div>
+                    <div style="background-color:#339933; width:9px; height:3px; margin-top:7px;"></div>
+                    <div style="margin-left:17px; margin-top:-11px;">Trajeto do veículo</div>
+                    <div style="background-color:#8900ff; width:9px; height:3px; margin-top:7px;"></div>
+                    <div style="margin-left:17px; margin-top:-11px;">Do Desembarque até o destino</div>
+                </div>
+            </div>
+            <div id="divMapaTrajeto">
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        MapaInicio();
+    </script>
+</body>
+
+</html>

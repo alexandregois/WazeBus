@@ -1,0 +1,775 @@
+{
+  "project": {
+    "projectSettingsVersion": "3.0.0",
+    "creationData": {
+      "type": "Import",
+      "projectTypeName": "com.intel.xdk.projecttype.jsapp",
+      "src": "",
+      "projectGuid": "f43985e2-1a61-41a8-a442-16b54e8223bd",
+      "lastModifiedDate": 1502811584731,
+      "creationDate": 1467653264039
+    },
+    "sourceDirectory": "www",
+    "cordovaPluginsDirectory": "plugins",
+    "gameAssetDirectory": "asset",
+    "gameMetadata": {},
+    "testDirectory": "test",
+    "startFile": "index.html",
+    "projectTags": [
+      "XDK-disallow-legacy-whitelist"
+    ],
+    "projectFiles": {},
+    "projectDirectories": {},
+    "libraries": [],
+    "cordovaPlugins": [
+      {
+        "id": "cordova-plugin-device",
+        "name": "Device",
+        "version": "1.1.1",
+        "originType": "cordova.io",
+        "origin": "cordova-plugin-device",
+        "gitref": "",
+        "paramvals": {},
+        "sourceLocation": "plugins/cordova-plugin-device",
+        "selectedState": "Included",
+        "checksum": "927290ca",
+        "dependsOn": [],
+        "topLevel": true,
+        "permissions": {},
+        "description": "Cordova Device Plugin",
+        "data": {},
+        "dependedBy": []
+      },
+      {
+        "id": "cordova-plugin-geolocation",
+        "name": "Geolocation",
+        "version": "2.1.0",
+        "originType": "cordova.io",
+        "origin": "cordova-plugin-geolocation",
+        "gitref": "",
+        "paramvals": {},
+        "sourceLocation": "plugins/cordova-plugin-geolocation",
+        "selectedState": "Included",
+        "checksum": "aa7be91c",
+        "dependsOn": [],
+        "topLevel": true,
+        "permissions": {
+          "android:name": [
+            "android.permission.ACCESS_COARSE_LOCATION",
+            "android.permission.ACCESS_FINE_LOCATION"
+          ]
+        },
+        "description": "Cordova Geolocation Plugin",
+        "data": {},
+        "dependedBy": []
+      },
+      {
+        "id": "cordova-plugin-globalization",
+        "name": "Globalization",
+        "version": "1.0.3",
+        "originType": "cordova.io",
+        "origin": "cordova-plugin-globalization",
+        "gitref": "",
+        "paramvals": {},
+        "sourceLocation": "plugins/cordova-plugin-globalization",
+        "selectedState": "Included",
+        "checksum": "c4e26e54",
+        "dependsOn": [],
+        "topLevel": true,
+        "permissions": {},
+        "description": "Cordova Globalization Plugin",
+        "data": {},
+        "dependedBy": []
+      },
+      {
+        "id": "cordova-plugin-inappbrowser",
+        "name": "InAppBrowser",
+        "version": "1.3.0",
+        "originType": "cordova.io",
+        "origin": "cordova-plugin-inappbrowser",
+        "gitref": "",
+        "paramvals": {},
+        "sourceLocation": "plugins/cordova-plugin-inappbrowser",
+        "selectedState": "Included",
+        "checksum": "20f7ee20",
+        "dependsOn": [],
+        "topLevel": true,
+        "cordovaVersion": ">=3.1.0",
+        "permissions": {},
+        "description": "Cordova InAppBrowser Plugin",
+        "data": {},
+        "dependedBy": []
+      },
+      {
+        "id": "cordova-plugin-network-information",
+        "name": "Network Information",
+        "version": "1.2.0",
+        "originType": "cordova.io",
+        "origin": "cordova-plugin-network-information",
+        "gitref": "",
+        "paramvals": {},
+        "sourceLocation": "plugins/cordova-plugin-network-information",
+        "selectedState": "Included",
+        "checksum": "ca19365f",
+        "dependsOn": [],
+        "topLevel": true,
+        "cordovaVersion": ">=3.1.0",
+        "permissions": {
+          "android:name": [
+            "android.permission.ACCESS_NETWORK_STATE"
+          ]
+        },
+        "description": "Cordova Network Information Plugin",
+        "data": {},
+        "dependedBy": []
+      },
+      {
+        "id": "cordova-plugin-splashscreen",
+        "name": "Splashscreen",
+        "version": "3.2.0",
+        "originType": "cordova.io",
+        "origin": "cordova-plugin-splashscreen",
+        "gitref": "",
+        "paramvals": {},
+        "sourceLocation": "plugins/cordova-plugin-splashscreen",
+        "selectedState": "Included",
+        "checksum": "452a4659",
+        "dependsOn": [],
+        "topLevel": true,
+        "cordovaVersion": ">=3.1.0",
+        "permissions": {},
+        "description": "Cordova Splashscreen Plugin",
+        "data": {},
+        "dependedBy": []
+      },
+      {
+        "id": "cordova-plugin-statusbar",
+        "name": "StatusBar",
+        "version": "2.1.0",
+        "originType": "cordova.io",
+        "origin": "cordova-plugin-statusbar",
+        "gitref": "",
+        "paramvals": {},
+        "sourceLocation": "plugins/cordova-plugin-statusbar",
+        "selectedState": "Included",
+        "checksum": "858cc583",
+        "dependsOn": [],
+        "topLevel": true,
+        "cordovaVersion": ">=3.0.0",
+        "permissions": {},
+        "description": "Cordova StatusBar Plugin",
+        "data": {},
+        "dependedBy": []
+      }
+    ],
+    "serviceMethods": [],
+    "buildConfigurations": {
+      "Android": {
+        "platform_": "android",
+        "runtime_": "Crosswalk with Cordova 3.x",
+        "name_": "Android",
+        "preferences_": {
+          "android-minSdkVersion": "14",
+          "android-targetSdkVersion": "23",
+          "android-installLocation": "auto",
+          "android-signed": true,
+          "Orientation": "portrait"
+        },
+        "isActive_": true,
+        "certificateId_": "4fKGNJ7udU-qxfL6AiTdNA2",
+        "appName_": "Wazebus",
+        "appID_": "br.com.salineira.ondeestaonibus",
+        "appAccess_": {
+          "mode": "whitelist",
+          "network": [
+            "*"
+          ],
+          "intents": [
+            "*"
+          ],
+          "navigation": [
+            "*"
+          ],
+          "properties": {}
+        },
+        "icons_": [
+          {
+            "density": "ldpi",
+            "relPath": "package-assets/36-PX.png",
+            "width": 36,
+            "height": 36
+          },
+          {
+            "density": "mdpi",
+            "relPath": "package-assets/48-PX.png",
+            "width": 48,
+            "height": 48
+          },
+          {
+            "density": "hdpi",
+            "relPath": "package-assets/72-PX.png",
+            "width": 72,
+            "height": 72
+          },
+          {
+            "density": "xhdpi",
+            "relPath": "package-assets/96-PX.png",
+            "width": 96,
+            "height": 96
+          }
+        ],
+        "splashes_": [
+          {
+            "relPath": "package-assets/320 X 426 PX.png",
+            "density": "ldpi",
+            "height": 426,
+            "width": 320,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "package-assets/320-X-470-PX.png",
+            "density": "mdpi",
+            "height": 470,
+            "width": 320,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "package-assets/480-X-640-PX.png",
+            "density": "hdpi",
+            "height": 640,
+            "width": 480,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "package-assets/720-X-960-PX.png",
+            "density": "xhdpi",
+            "height": 960,
+            "width": 720,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "package-assets/426-X-320-PX.png",
+            "density": "ldpi",
+            "height": 320,
+            "width": 426,
+            "orientation": "landscape"
+          },
+          {
+            "relPath": "package-assets/470-X-320-PX.png",
+            "density": "mdpi",
+            "height": 320,
+            "width": 470,
+            "orientation": "landscape"
+          },
+          {
+            "relPath": "package-assets/640-X-480-PX.png",
+            "density": "hdpi",
+            "height": 480,
+            "width": 640,
+            "orientation": "landscape"
+          },
+          {
+            "relPath": "package-assets/960-x-720-PX.png",
+            "density": "xhdpi",
+            "height": 720,
+            "width": 960,
+            "orientation": "landscape"
+          }
+        ],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "appVersion_": "1.0.0.2",
+        "appVersionCode_": "3",
+        "crosswalkVersion_": "19",
+        "cordovaCLIVersion_": "5.4.1",
+        "appDescription_": "Wazebus - Salineira",
+        "appAuthor_": "Salineira"
+      },
+      "iOS": {
+        "platform_": "ios",
+        "runtime_": "Cordova 3.x",
+        "name_": "iOS",
+        "preferences_": {
+          "deployment-target": "8.0",
+          "ios-configuration": "production"
+        },
+        "isActive_": false,
+        "certificateId_": "kiWEIB1oJk6OFz-dsCAN6A2",
+        "appName_": "Wazebus",
+        "appID_": "br.com.salineira.wazebus",
+        "appAccess_": {
+          "mode": "whitelist",
+          "network": [
+            "*"
+          ],
+          "intents": [
+            "*"
+          ],
+          "navigation": [
+            "*"
+          ],
+          "properties": {}
+        },
+        "icons_": [
+          {
+            "relPath": "package-assets/iOS/29-X-29-PX.png",
+            "width": 29,
+            "height": 29
+          },
+          {
+            "relPath": "package-assets/iOS/58-X-58-PX.png",
+            "width": 58,
+            "height": 58
+          },
+          {
+            "relPath": "package-assets/iOS/87-X-87-PX.png",
+            "width": 87,
+            "height": 87
+          },
+          {
+            "relPath": "package-assets/iOS/60-X-60-PX.png",
+            "width": 60,
+            "height": 60
+          },
+          {
+            "relPath": "package-assets/iOS/120-X-120-PX.png",
+            "width": 120,
+            "height": 120
+          },
+          {
+            "relPath": "package-assets/iOS/180-X-180-PX.png",
+            "width": 180,
+            "height": 180
+          },
+          {
+            "relPath": "package-assets/iOS/76-PX.png",
+            "width": 76,
+            "height": 76
+          },
+          {
+            "relPath": "package-assets/iOS/152-PX.png",
+            "width": 152,
+            "height": 152
+          },
+          {
+            "relPath": "package-assets/iOS/40-PX.png",
+            "width": 40,
+            "height": 40
+          },
+          {
+            "relPath": "package-assets/iOS/80-PX.png",
+            "width": 80,
+            "height": 80
+          },
+          {
+            "relPath": "package-assets/iOS/57-PX.png",
+            "width": 57,
+            "height": 57
+          },
+          {
+            "relPath": "package-assets/iOS/114-PX.png",
+            "width": 114,
+            "height": 114
+          },
+          {
+            "relPath": "package-assets/iOS/72-PX.png",
+            "width": 72,
+            "height": 72
+          },
+          {
+            "relPath": "package-assets/iOS/144-PX.png",
+            "width": 144,
+            "height": 144
+          },
+          {
+            "relPath": "package-assets/iOS/50-PX.png",
+            "width": 50,
+            "height": 50
+          },
+          {
+            "relPath": "package-assets/iOS/100-PX.png",
+            "width": 100,
+            "height": 100
+          },
+          {
+            "relPath": "package-assets/iOS/187-PX.png",
+            "width": 187,
+            "height": 187
+          }
+        ],
+        "splashes_": [
+          {
+            "relPath": "package-assets/iOS/750 X 1334 PX.png",
+            "height": 1334,
+            "width": 750,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "package-assets/iOS/1242 X 2208 PX.png",
+            "height": 2208,
+            "width": 1242,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "package-assets/640 X 1136 PX.png",
+            "height": 1136,
+            "width": 640,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "package-assets/640 X 960 PX.png",
+            "height": 960,
+            "width": 640,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "package-assets/iOS/320-x-480-PX.png",
+            "height": 480,
+            "width": 320,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "package-assets/iOS/768-x-1024-PX.png",
+            "height": 1024,
+            "width": 768,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "package-assets/iOS/1536-x-2048-PX.png",
+            "height": 2048,
+            "width": 1536,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "package-assets/iOS/2048-x-2732-PX.png",
+            "height": 2732,
+            "width": 2048,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "package-assets/iOS/1334-x-750-PX.png",
+            "height": 750,
+            "width": 1334,
+            "orientation": "landscape"
+          },
+          {
+            "relPath": "package-assets/iOS/2208-x-1242-px.png",
+            "height": 1242,
+            "width": 2208,
+            "orientation": "landscape"
+          },
+          {
+            "relPath": "package-assets/iOS/2048-x-1536-PX.png",
+            "height": 1536,
+            "width": 2048,
+            "orientation": "landscape"
+          },
+          {
+            "relPath": "package-assets/iOS/1024-x-768-PX.png",
+            "height": 768,
+            "width": 1024,
+            "orientation": "landscape"
+          },
+          {
+            "relPath": "package-assets/iOS/2732-x-2048-PX.png",
+            "height": 2048,
+            "width": 2732,
+            "orientation": "landscape"
+          }
+        ],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "appVersion_": "0.1.4",
+        "cordovaCLIVersion_": "5.4.1",
+        "iosProvs_": [
+          {
+            "relPath": "package-assets/Wazebus.mobileprovision",
+            "type": "production"
+          },
+          {
+            "relPath": "package-assets/Wazebus.mobileprovision",
+            "type": "adhoc"
+          }
+        ],
+        "appDescription_": "Wazebus - Salineira",
+        "appAuthor_": "Salineira",
+        "appVersionCode_": "1.0.0.3"
+      },
+      "Windows8": {
+        "platform_": "windows8",
+        "runtime_": "Cordova 3.x",
+        "name_": "Windows8",
+        "preferences_": {
+          "windows-publisher-id": "AutoViaoSalineira.Salineira",
+          "wp81-publisher-id": "5AD4D90F-3E45-497C-A4C9-3F7DF8A6B37B",
+          "windows-publisher-display-name": "Auto Viação Salineira"
+        },
+        "isActive_": false,
+        "certificateId_": "",
+        "appName_": "Wazebus",
+        "appID_": "AutoViaoSalineira.Salineira",
+        "appAccess_": {
+          "mode": "whitelist",
+          "network": [
+            "*"
+          ],
+          "intents": [],
+          "navigation": [
+            "*"
+          ],
+          "properties": {}
+        },
+        "icons_": [
+          {
+            "relPath": "package-assets/WP/24px.png",
+            "width": 24,
+            "height": 24
+          },
+          {
+            "relPath": "package-assets/WP/30px.png",
+            "width": 30,
+            "height": 30
+          },
+          {
+            "relPath": "package-assets/WP/33px.png",
+            "width": 33,
+            "height": 33
+          },
+          {
+            "relPath": "package-assets/WP/50.png",
+            "width": 50,
+            "height": 50
+          },
+          {
+            "relPath": "package-assets/WP/58.png",
+            "width": 58,
+            "height": 58
+          },
+          {
+            "relPath": "package-assets/WP/70.png",
+            "width": 70,
+            "height": 70
+          },
+          {
+            "relPath": "package-assets/WP/120.png",
+            "width": 120,
+            "height": 120
+          },
+          {
+            "relPath": "package-assets/WP/44.png",
+            "width": 44,
+            "height": 44
+          },
+          {
+            "relPath": "package-assets/WP/62.png",
+            "width": 62,
+            "height": 62
+          },
+          {
+            "relPath": "package-assets/WP/71.png",
+            "width": 71,
+            "height": 71
+          },
+          {
+            "relPath": "package-assets/WP/99.png",
+            "width": 99,
+            "height": 99
+          },
+          {
+            "relPath": "package-assets/WP/106.png",
+            "width": 106,
+            "height": 106
+          },
+          {
+            "relPath": "package-assets/WP/150.png",
+            "width": 150,
+            "height": 150
+          },
+          {
+            "relPath": "package-assets/WP/170.png",
+            "width": 170,
+            "height": 170
+          },
+          {
+            "relPath": "package-assets/WP/210.png",
+            "width": 210,
+            "height": 210
+          },
+          {
+            "relPath": "package-assets/WP/360.png",
+            "width": 360,
+            "height": 360
+          },
+          {
+            "relPath": "package-assets/WP/310.png",
+            "width": 310,
+            "height": 310
+          },
+          {
+            "relPath": "package-assets/WP/310x150.png",
+            "width": 310,
+            "height": 150
+          },
+          {
+            "relPath": "package-assets/WP/434x210.png",
+            "width": 434,
+            "height": 210
+          },
+          {
+            "relPath": "package-assets/WP/744x360.png",
+            "width": 744,
+            "height": 360
+          }
+        ],
+        "splashes_": [
+          {
+            "relPath": "package-assets/WP/620x300.png",
+            "height": 300,
+            "width": 620,
+            "orientation": "landscape"
+          },
+          {
+            "relPath": "package-assets/480 X 800 PX.png",
+            "height": 800,
+            "width": 480,
+            "orientation": "landscape"
+          },
+          {
+            "relPath": "package-assets/WP/672x1120.png",
+            "height": 1120,
+            "width": 672,
+            "orientation": "landscape"
+          },
+          {
+            "relPath": "package-assets/WP/1152x1920.png",
+            "height": 1920,
+            "width": 1152,
+            "orientation": "landscape"
+          }
+        ],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "appVersion_": "1.0.0.2",
+        "cordovaCLIVersion_": "5.4.1",
+        "appDescription_": "Wazebus - Salineira",
+        "appAuthor_": "Salineira"
+      },
+      "WebApp": {
+        "platform_": "webapp",
+        "runtime_": "W3C",
+        "name_": "WebApp",
+        "preferences_": {},
+        "isActive_": false,
+        "certificateId_": "",
+        "appName_": "OndeEstaOnibus-SALINEIRA",
+        "appID_": "not.yet.specified",
+        "appAccess_": {
+          "mode": "whitelist",
+          "network": [
+            "*"
+          ],
+          "intents": [],
+          "navigation": []
+        },
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "appVersion_": "0.0.1"
+      },
+      "Firefox": {
+        "platform_": "firefoxos",
+        "runtime_": "W3C on Firefox OS",
+        "name_": "Firefox",
+        "preferences_": {},
+        "isActive_": false,
+        "certificateId_": "",
+        "appName_": "OndeEstaOnibus-SALINEIRA",
+        "appID_": "not.yet.specified",
+        "appAccess_": {
+          "mode": "whitelist",
+          "network": [
+            "*"
+          ],
+          "intents": [],
+          "navigation": []
+        },
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "appVersion_": "0.0.1"
+      },
+      "Chrome": {
+        "platform_": "chromeos",
+        "runtime_": "W3C on Chrome OS",
+        "name_": "Chrome",
+        "preferences_": {},
+        "isActive_": false,
+        "certificateId_": "",
+        "appName_": "OndeEstaOnibus-SALINEIRA",
+        "appID_": "not.yet.specified",
+        "appAccess_": {
+          "mode": "whitelist",
+          "network": [
+            "*"
+          ],
+          "intents": [],
+          "navigation": []
+        },
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "appVersion_": "0.0.1"
+      },
+      "Facebook": {
+        "platform_": "facebook",
+        "runtime_": "W3C on Facebook",
+        "name_": "Facebook",
+        "preferences_": {},
+        "isActive_": false,
+        "certificateId_": "",
+        "appName_": "OndeEstaOnibus-SALINEIRA",
+        "appID_": "not.yet.specified",
+        "appAccess_": {
+          "mode": "whitelist",
+          "network": [
+            "*"
+          ],
+          "intents": [],
+          "navigation": []
+        },
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "appVersion_": "0.0.1"
+      },
+      "WP81": {
+        "platform_": "wp81",
+        "runtime_": "Cordova 3.x",
+        "name_": "WP81",
+        "preferences_": {},
+        "isActive_": true,
+        "certificateId_": "",
+        "appName_": "OndeEstaOnibus-SALINEIRA",
+        "appID_": "not.yet.specified",
+        "appAccess_": {
+          "mode": "whitelist",
+          "network": [
+            "*"
+          ],
+          "intents": [],
+          "navigation": []
+        },
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "appVersion_": "0.0.0.1",
+        "cordovaCLIVersion_": "5.4.1"
+      }
+    }
+  }
+}
